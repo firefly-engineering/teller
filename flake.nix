@@ -2,11 +2,12 @@
   description = "Teller — versioned toolchain registry library for Nix flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nix-pins.url = "github:firefly-engineering/nix-pins";
+    nixpkgs.follows = "nix-pins/nixpkgs";
   };
 
   outputs =
-    { self, nixpkgs }:
+    { self, nixpkgs, ... }:
     let
       # Library is system-independent (no pkgs closure)
       tellerLib = import ./lib {
